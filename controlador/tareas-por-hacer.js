@@ -60,17 +60,37 @@ const borrar = (descripcion) => {
         listadoHacer = nuevo;
         guardarDB();
     }
+}
+const getListadoTotal = () => {
+    let listaTotal = getListado();
+    console.log(`==========por hacer ======`.green);
+    for (let tarea of listaTotal) {
+        console.log(`----------Tarea-----------`.yellow);
+        console.log(`Descripcion: ${tarea.descripcion}`);
+        console.log(`Completado:  ${tarea.completado} `);
+    }
+    console.log('=================='.green);
+}
+const getListaIncompletos = () => {
+    let listaTotal = getListado();
+    let listaresp = [];
+    for (const tarea of listaTotal) {
+        if (tarea.completado == false) {
+            listaresp.push(tarea);
 
+        }
+    }
 
-
+    return listaresp;
 
 }
-
 
 module.exports = {
     crear,
     guardarDB,
     getListado,
     actualizar,
-    borrar
+    borrar,
+    getListadoTotal,
+    getListaIncompletos
 }

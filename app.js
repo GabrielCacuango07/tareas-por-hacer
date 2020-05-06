@@ -3,8 +3,7 @@ const color = require('colors')
 const porHacer = require('./controlador/tareas-por-hacer');
 
 
-let comando = argv._[0]
-
+let comando = argv._[0];
 
 switch (comando) {
     case 'crear':
@@ -19,16 +18,22 @@ switch (comando) {
 
         break;
     case 'listar':
-        console.log('Mostrara todas las tareas por hacer');
-        let listado = porHacer.getListado();
-        console.log(`==========por hacer ======`.green);
-        for (let tarea of listado) {
-            console.log(`----------Tarea-----------`.yellow);
-            console.log(`Descripcion: ${tarea.descripcion}`);
-            console.log(`Completado:  ${tarea.completado} `);
+        if (argv.todos == true) {
+            console.log('lista pendientes');
+            let listaPendiente = porHacer.getListaIncompletos();
+            for (let tarea of listaPendiente) {
+                console.log(`----------Tarea-----------`.yellow);
+                console.log(`Descripcion: ${tarea.descripcion}`);
+                console.log(`Completado:  ${tarea.completado} `);
+            }
+            console.log('=================='.red);
+
+
+        } else {
+            porHacer.getListadoTotal();
         }
-        console.log('=================='.green);
         break;
+
     case 'actualizar':
         console.log('actualiza una tarea por hacer ');
         let actualizado = porHacer.actualizar(argv.descripcion, argv.completado);

@@ -10,15 +10,22 @@ const argv = require('yargs')
     })
 
 .command('actualizar', 'Actualiza el estado completado de una tarea ', {
-        descripcion,
-        completado: {
+    descripcion,
+    completado: {
 
-            default: true,
-            alias: 'c'
-        }
-    })
-    .command('listar', 'Permite listar las tareas por hacer')
-    .command('borrar', 'Permite borrar una tarea', {
+        default: true,
+        alias: 'c'
+    }
+})
+
+.command('listar', 'Permite listar las tareas por hacer', {
+
+    todos: {
+        alias: 'i'
+    }
+})
+
+.command('borrar', 'Permite borrar una tarea', {
         descripcion
     })
     .help()
